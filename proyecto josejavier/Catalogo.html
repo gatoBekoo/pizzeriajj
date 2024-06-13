@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Constructor de Pizza</title>
+  <style>
+    /* Estilos básicos para la presentación */
+    .ingredientes {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .ingrediente {
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Constructor de Pizza</h1>
+  
+  <h2>Selecciona los ingredientes:</h2>
+  <div class="ingredientes">
+    <label><input type="checkbox" class="ingrediente" value="Pepperoni"> Pepperoni</label>
+    <label><input type="checkbox" class="ingrediente" value="Jamón"> Jamón</label>
+    <label><input type="checkbox" class="ingrediente" value="Champiñones"> Champiñones</label>
+    <!-- Agrega más ingredientes aquí -->
+  </div>
+
+  <h2>Selecciona el tamaño:</h2>
+  <select id="tamaño">
+    <option value="Personal">Personal</option>
+    <option value="Mediana">Mediana</option>
+    <option value="Grande">Grande</option>
+  </select>
+
+
+  <h2>Selecciona el tipo de masa:</h2>
+  <select id="masa">
+    <option value="Delgada">Delgada</option>
+    <option value="Normal">Normal</option>
+    <option value="Gruesa">Gruesa</option>
+  </select>
+
+  <h2>Resumen de la pizza:</h2>
+  <div id="resumen"></div>
+
+  <script>
+    class ConstructorPizza {
+      constructor() {
+        this.ingredientesContainer = document.getElementById('ingredientesContainer');
+        this.tamaño = document.getElementById('tamaño');
+        this.masa = document.getElementById('masa');
+        this.resumen = document.getElementById('resumen');
+        this.ingredientes = [
+          'Pepperoni',
+          'Jamón',
+          'Champiñones',
+          // Agrega más ingredientes aquí
+        ];
+        this.mostrarResumen = this.mostrarResumen.bind(this);
+        this.init();
+      }
+
+      init() {
+        this.crearCheckboxes();
+        this.addEventListeners();
+        this.mostrarResumen();
+      }
+
+      crearCheckboxes() {
+        this.ingredientes.forEach(ingrediente => {
+          const checkbox = document.createElement('input');
+          checkbox.type = 'checkbox';
+          checkbox.className = 'ingrediente';
+          checkbox.value = ingrediente;
+          const label = document.createElement('label');
+          label.appendChild(checkbox);
+          label.appendChild(document.createTextNode(ingrediente));
+          this.ingredientesContainer.appendChild(label);
+        });
+      }
+
+      addEventListeners() {
+        this.ingredientesContainer.addEventListener('change', this.mostrarResumen);
+        this.tamaño.addEventListener('change', this.mostrarResumen);
+        this.masa.addEventListener('change', this.mostrarResumen);
+      }
+
+      mostrarResumen() {
+        const ingredientesSeleccionados = [...document.querySelectorAll('.ingrediente:checked')].map(checkbox => checkbox.value);
+        const tamañoSeleccionado = this.tamaño.value;
+        const masaSeleccionada = this.masa.value;
+        this.resumen.textContent = Pizza ${tamañoSeleccionado} con masa ${masaSeleccionada}. Ingredientes: ${ingredientesSeleccionados.join(', ')}.;
+      }
+    }
+
+    const constructorPizza = new ConstructorPizza();
+  </script>
+</body>
+</html>

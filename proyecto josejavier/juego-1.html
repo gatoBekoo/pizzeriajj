@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Pizzería</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Juego de Pizzería</h1>
+    <div id="game">
+        <div id="order">Orden: <span id="order-details"></span></div>
+        <div id="ingredients">
+            <button class="ingredient" data-ingredient="queso">Queso</button>
+            <button class="ingredient" data-ingredient="pepperoni">Pepperoni</button>
+            <button class="ingredient" data-ingredient="champiñones">Champiñones</button>
+            <button class="ingredient" data-ingredient="aceitunas">Aceitunas</button>
+        </div>
+        <div id="pizza">
+            <h2>Tu Pizza</h2>
+            <ul id="pizza-ingredients"></ul>
+        </div>
+        <button id="submit-pizza">Enviar Pizza</button>
+        <div id="result"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 0;
+}
+
+#game {
+    margin: 20px auto;
+    max-width: 600px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+#order {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+#ingredients {
+    margin-bottom: 20px;
+}
+
+.ingredient {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #e7e7e7;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.ingredient:hover {
+    background-color: #d4d4d4;
+}
+
+#pizza {
+    margin-bottom: 20px;
+}
+
+#submit-pizza {
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#submit-pizza:hover {
+    background-color: #45a049;
+}
+
+#result {
+    font-size: 1.2em;
+    margin-top: 20px;
+    color: #333;
+}

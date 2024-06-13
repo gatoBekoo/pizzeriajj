@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Constructor de Pizza</title>
+  <style>
+    /* Estilos básicos para la presentación */
+    .ingredientes {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .ingrediente {
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Constructor de Pizza</h1>
+  
+  <h2>Selecciona los ingredientes:</h2>
+  <div class="ingredientes">
+    <label><input type="checkbox" class="ingrediente" value="Pepperoni"> Pepperoni</label>
+    <label><input type="checkbox" class="ingrediente" value="Jamón"> Jamón</label>
+    <label><input type="checkbox" class="ingrediente" value="Champiñones"> Champiñones</label>
+    <!-- Agrega más ingredientes aquí -->
+  </div>
+
+  <h2>Selecciona el tamaño:</h2>
+  <select id="tamaño">
+    <option value="Personal">Personal</option>
+    <option value="Mediana">Mediana</option>
+    <option value="Grande">Grande</option>
+  </select>
+
+  <h2>Selecciona el tipo de masa:</h2>
+  <select id="masa">
+    <option value="Delgada">Delgada</option>
+    <option value="Normal">Normal</option>
+    <option value="Gruesa">Gruesa</option>
+  </select>
+
+  <h2>Resumen de la pizza:</h2>
+  <div id="resumen"></div>
+
+  <script>
+    const ingredientes = document.querySelectorAll('.ingrediente');
+    const tamaño = document.getElementById('tamaño');
+    const masa = document.getElementById('masa');
+    const resumen = document.getElementById('resumen');
+
+    ingredientes.forEach(ingrediente => {
+      ingrediente.addEventListener('change', mostrarResumen);
+    });
+
+    tamaño.addEventListener('change', mostrarResumen);
+    masa.addEventListener('change', mostrarResumen);
+
+    function mostrarResumen() {
+      const ingredientesSeleccionados = [...ingredientes].filter(ingrediente => ingrediente.checked).map(ingrediente => ingrediente.value);
+      const tamañoSeleccionado = tamaño.value;
+      const masaSeleccionada = masa.value;
+
+      resumen.innerHTML = `Pizza ${tamañoSeleccionado} con masa ${masaSeleccionada}. Ingredientes: ${ingredientesSeleccionados.join(', ')}.`;
+    }
+  </script>
+</body>
+</html>
